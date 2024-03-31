@@ -3,88 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Pizzaria della Nonna</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0e2ce;
-      color: #333;
-      margin: 20px;
-    }
-    h1 {
-      color: #e67e22;
-    }
-    h2 {
-      color: #2c3e50;
-    }
-    p {
-      font-size: 16px;
-    }
-    .special {
-      font-style: italic;
-    }
-    .highlight {
-      color: #c0392b;
-      font-weight: bold;
-    }
-    .underline {
-      text-decoration: underline;
-    }
-    /* Estilos para as imagens */
-    .pizza-img {
-      max-width: 400px; 
-      height: auto; 
-      display: block; 
-    }
-  </style>
-  <link rel="icon" href=".\Imagens\icone.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="./Imagens/icone.png" type="image/png">
 </head>
 <body>
-  <header>
-    <h1>Pizzaria della Nonna</h1>
-    <p class="special"><em>Pasta fatta in casa!</em> | Massa feita em casa!</p>
+  <header class="header">
+    <div class="header-content">
+      <h1>Pizzaria della Nonna</h1>
+      <p><em>Pasta fatta in casa! | Massa feita em casa!</em></p>
+      <nav class="nav">
+        <a href="#Inicial"><u>Página Inicial</u></a>
+        <a href="./sabores.html">Conheça nossos sabores</a>
+        <a href="./formulario.html">Peça sua pizza</a>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <a href="#sabores">Conheça nossos sabores</a><br>
-    <a href="#localizacao">Encontre nossa pizzaria</a><br>
-    <a href=".\formulario.html">Peça sua pizza</a>
-  </nav>
-
-  <section id="sabores">
-    <h2>Nossos Sabores</h2>
-    <ul>
-      <li>Pizza Margherita</li>
-      <li>Pizza Pepperoni</li>
-      <li>Pizza Calabresa</li>
-    </ul>
-
-    <h3>Pizza Margherita</h3>
-    <img src=".\Imagens\pizza-margherita.avif" alt="Pizza Margherita" class="pizza-img">
-    <p class="highlight">Feita com molho de tomate, queijo mozarela, manjericão e azeite.</p>
-
-    <h3>Pizza Pepperoni</h3>
-    <img src=".\Imagens\pizza-pepperoni.webp" alt="Pizza Pepperoni" class="pizza-img">
-    <p class="highlight">Deliciosa pizza com pepperoni fatiado e queijo derretido.</p>
-
-    <h3>Pizza Calabresa</h3>
-    <img src=".\Imagens\pizza-calabresa.jpeg" alt="Pizza Calabresa" class="pizza-img">
-    <p class="highlight">Pizza com calabresa, cebola, queijo e um toque de orégano.</p>
+  <section class="nossa-pizza">
+    <h2>A Pizzaria della Nonna, sua pizza com massa caseira original italiana</h2>
+    <h3>Veja abaixo um video de como nossas pizzas são feitas:</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/STa_UtZP3tg?si=I5m6ZtXjUiwKyIXF" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </section>
 
-  <section id="localizacao">
-    <h2>Localização</h2>
-    <p>Estamos localizados na Rua das Pizzas, 123 - Centro</p>
-    <p>Horário de funcionamento: Seg-Sáb 18:00 - 23:00</p>
-  </section>
 
-  <footer>
-    <p class="underline">Entre em contato: (11) 98765-4321</p>
-    <p class="underline">Siga-nos nas redes sociais:</p>
-    <ul>
-      <li><a href="https://www.facebook.com">Facebook</a></li>
-      <li><a href="https://www.instagram.com/">Instagram</a></li>
-      <li><a href="https://twitter.com/">Twitter</a></li>
-    </ul>
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <p class="underline" style="font-size: 14px;">Entre em contato: (11) 98765-4321</p>
+      <p class="underline" style="font-size: 14px;">Localização: Rua das Pizzas, 123 - Centro</p>
+      <p class="underline" style="font-size: 14px;">De Segunda à Sábado 17:00 - 23:00</p>
+      <ul class="social-links">
+        <li><a href="https://www.facebook.com">Facebook</a></li>
+        <li><a href="https://www.instagram.com/">Instagram</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+      </ul>
+    </div>
   </footer>
 
 </body>
