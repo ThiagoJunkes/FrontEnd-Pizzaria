@@ -14,38 +14,16 @@ body {
   padding: 20px;
 }
 
-.header-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 .nav a {
   color: white;
-  margin-right: 20px;
   text-decoration: none;
   font-weight: bold;
-}
-
-.nossa-pizza {
-  padding: 40px 20px;
-  background-color: #f1e5d4;
 }
 
 .titulo-pizzas {
   font-family: Arial, sans-serif;
   color: #c54234;
   font-weight: bold;
-}
-
-.sabores-container {
-  display: flex;
-  overflow-x: auto;
-}
-
-.pizza-item {
-  flex: 0 0 auto;
-  margin-right: 20px;
-  max-width: 300px;
 }
 
 .pizza-img {
@@ -61,11 +39,6 @@ body {
   text-align: center;
   margin-top: auto;
   max-height: 130px;
-}
-
-.footer-content {
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .social-links {
@@ -87,21 +60,12 @@ body {
   color: #c0392b;
   font-weight: bold;
 }
-.underline {
-  text-decoration: underline;
-}
+
 .pizza-img{
-  height: 200px;
-  width: 300px;
+  height: 400px;
+  width: 600px;
  }
 
- @media (min-width: 768px) {
-  .pizza-img {
-    height: 200px;
-    width: 300px;
-  }
-
-  .pizza-info {
-    padding: 20px;
-  }
+.underline {
+  text-decoration: underline;
 }
