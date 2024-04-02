@@ -3,41 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Pizzaria della Nonna</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="icon" href="./Imagens/icone.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <h1>Pizzaria della Nonna</h1>
-      <p><em>Pasta fatta in casa! | Massa feita em casa!</em></p>
-      <nav class="nav">
-        <a href="#Inicial"><u>Página Inicial</u></a>
-        <a href="./sabores.html">Conheça nossos sabores</a>
-        <a href="./formulario.html">Peça sua pizza</a>
-      </nav>
+  <header class="header bg-dark text-light py-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="w-25 col-md-4">
+          <img src="./Imagens/pizza-header.png" alt="Pizza Header" class="img-fluid" style="max-height: 80px;">
+        </div>
+        <div class="w-50 col-md-4 text-center">
+          <h1 class="mb-0">Pizzaria della Nonna</h1>
+          <div class="col align-items-center mx-1">
+            <a><em>Pasta fatta in casa!</em></a>
+            <span class="mx-1">|</span>
+            <a><em>Massa feita em casa!</em></a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2 text-center">
+        <nav class="nav row align-items-center">
+          <a href="./pagina-pizzaria.html" class="text-light col"><u>Página Inicial</u></a>
+          <a href="./sabores.html" class="text-light col">Conheça nossos sabores</a>
+          <a href="./formulario.html" class="text-light col">Peça sua pizza</a>
+        </nav>
+    </div>
     </div>
   </header>
 
   <section class="nossa-pizza">
-    <h2>A Pizzaria della Nonna, sua pizza com massa caseira original italiana</h2>
-    <h3>Veja abaixo um video de como nossas pizzas são feitas:</h3>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/STa_UtZP3tg?si=I5m6ZtXjUiwKyIXF" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="container">
+      <h2 class="text-center mt-5 mb-4">A Pizzaria della Nonna, sua pizza com massa caseira original italiana</h2>
+      <h3 class="text-center mb-4">Veja abaixo um vídeo de como nossas pizzas são feitas:</h3>
+      <div class="video-responsive">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/STa_UtZP3tg?si=I5m6ZtXjUiwKyIXF" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </section>
 
-
-  <footer id="footer" class="footer">
-    <div class="footer-content">
-      <p class="underline" style="font-size: 14px;">Entre em contato: (11) 98765-4321</p>
-      <p class="underline" style="font-size: 14px;">Localização: Rua das Pizzas, 123 - Centro</p>
-      <p class="underline" style="font-size: 14px;">De Segunda à Sábado 17:00 - 23:00</p>
-      <ul class="social-links">
-        <li><a href="https://www.facebook.com">Facebook</a></li>
-        <li><a href="https://www.instagram.com/">Instagram</a></li>
-        <li><a href="https://twitter.com/">Twitter</a></li>
-      </ul>
+  <footer id="footer" class="footer bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="mb-0 underline">De Segunda à Sábado 17:00 - 23:00</p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-0 underline">Localização: Rua das Pizzas, 123 - Centro</p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-0 underline">Entre em contato: (11) 98765-4321</p>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <ul class="social-links mb-0">
+            <li class="d-inline me-2"><a href="https://www.facebook.com" class="text-light">Facebook</a></li>
+            <li class="d-inline me-2"><a href="https://www.instagram.com/" class="text-light">Instagram</a></li>
+            <li class="d-inline"><a href="https://twitter.com/" class="text-light">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </footer>
+  </footer>  
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
