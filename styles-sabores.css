@@ -24,6 +24,11 @@ body {
   font-weight: bold;
 }
 
+.highlight {
+  color: #c0392b;
+  font-weight: bold;
+}
+
 .footer {
   background-color: #3b3b3b;
   color: white;
