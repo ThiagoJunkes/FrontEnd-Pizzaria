@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1e5d4;
+  color: #333;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Para cobrir a altura da viewport */
+}
+
+.header {
+  background-color: #db8840;
+  color: white;
+  padding: 20px;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nav a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nossa-pizza {
+  padding: 40px 20px;
+  background-color: #f1e5d4;
+}
+
+.titulo-pizzas {
+  font-family: Arial, sans-serif;
+  color: #c54234;
+  font-weight: bold;
+}
+
+.sabores-container {
+  display: flex;
+  overflow-x: auto;
+}
+
+.pizza-item {
+  flex: 0 0 auto;
+  margin-right: 20px;
+  max-width: 300px;
+}
+
+.pizza-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.footer {
+  background-color: #3b3b3b;
+  color: white;
+  padding: 5px 0 15px 0;
+  text-align: center;
+  margin-top: auto;
+  max-height: 130px;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.social-links li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.highlight {
+  color: #c0392b;
+  font-weight: bold;
+}
+.underline {
+  text-decoration: underline;
+}
+.pizza-img{
+  height: 200px;
+  width: 300px;
+ }
+
+ @media (min-width: 768px) {
+  .pizza-img {
+    height: 200px;
+    width: 300px;
+  }
+
+  .pizza-info {
+    padding: 20px;
+  }
+}
