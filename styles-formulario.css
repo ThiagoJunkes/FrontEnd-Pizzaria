@@ -1,0 +1,103 @@
+/* Estilos para o formulário */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1e5d4;
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Para cobrir a altura da viewport */
+  }
+  
+  .content-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #2c3e50;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  .special {
+    font-style: italic;
+  }
+  
+  .separator-line {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+  }
+  
+  .radio-group {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .radio-group input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-group label {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #c54234;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .radio-group input[type="radio"]:checked + label {
+    background-color: #e67e22;
+  }
+  
+  /* Estilos para o select */
+  select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .underline {
+    text-decoration: underline;
+  }
+  
+  /* Estilos para os sabores em colunas */
+.row .col-md-4 {
+  margin-bottom: 10px;
+}
+
+/* Estilos para os sabores em colunas */
+#sabores .col-6 {
+  max-width: 200px; /* Tamanho máximo para evitar que os sabores fiquem muito largos */
+}
+
+/* Estilos para os checkbox de sabores */
+.radio-group input[type="checkbox"] {
+  display: none;
+}
+
+.radio-group label {
+  display: block;
+  padding: 10px;
+  background-color: #c54234;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.radio-group input[type="checkbox"]:checked + label {
+  background-color: #e67e22;
+}
