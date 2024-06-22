@@ -40,7 +40,7 @@
   <div class="content-container">
     <section id="login">
       <h2>Faça seu login</h2>
-      <form id="formLogin" action="#" onsubmit="return validarLogin()">
+      <form id="formLogin" action="#" onsubmit="return validarLogin(event)">
         <section id="dados">
           <label for="username">Usuário:</label><br>
           <input type="text" id="username" name="username" required><br><br>
@@ -86,7 +86,7 @@
     </div>
   </footer>  
 
-  <script src="scripts-login.js"></script>
+  <script src="scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

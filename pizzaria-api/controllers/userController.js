@@ -12,18 +12,20 @@ exports.login = async (req, res) => {
       }
     );
 
-    // Recupera o valor da variável de sessão @token
+    // Recupera o valor da variável de sessão @token e tipo de usuário
     const [results] = await sequelize.query(
-      'SELECT @token AS token;',
+      'SELECT @token AS token, tipo FROM usuarios WHERE username = :username;',
       {
+        replacements: { username },
         type: sequelize.QueryTypes.SELECT
       }
     );
 
     const token = results.token;
+    const tipo = results.tipo;
 
     if (token) {
-      res.json({ token });
+      res.json({ token, tipo });
     } else {
       res.status(401).json({ error: 'Invalid username or password' });
     }
