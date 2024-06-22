@@ -27,7 +27,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 ## Uso
 Para iniciar o servidor REST:
      
-      npm install
+      node app.js
 
 ### Após iniciar o servidor:
 Abra seu navegador e use a extensão 'CORS Unblock' (ou similar) para desbloquear as requisições CORS durante o desenvolvimento.
