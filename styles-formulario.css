@@ -101,3 +101,7 @@ body {
 .radio-group input[type="checkbox"]:checked + label {
   background-color: #e67e22;
 }
+
+.register-link {
+  color: #333 !important;
+}
