@@ -31,7 +31,7 @@ async function validarLogin(event) {
 
     if (response.ok) {
       const { token, tipo } = data;
-      localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
 
       if (tipo === 1) {
         window.location.href = './area-admin.html';
@@ -46,5 +46,5 @@ async function validarLogin(event) {
     alert('Erro ao fazer login. Tente novamente mais tarde.');
   }
 }
-  
-  
+
+

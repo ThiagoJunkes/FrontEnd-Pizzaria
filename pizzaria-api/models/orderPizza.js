@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       qtd: {
         type: DataTypes.INTEGER,
       },
+      tamanho: {
+        type: DataTypes.STRING(1),
+      }
     }, {
       tableName: 'pedidos_pizzas',
       timestamps: false,

@@ -3,6 +3,8 @@ const { sequelize } = require('../models');
 exports.login = async (req, res) => {
   const { username, senha } = req.body;
   try {
+
+    console.log("Login: " + username);
     // Chama a procedure gerar_token
     await sequelize.query(
       'CALL gerar_token(:username, :senha, @token);',

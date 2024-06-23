@@ -34,6 +34,7 @@ CREATE TABLE pedidos_pizzas (
     fk_pedido INT,
     fk_pizza INT,
     qtd INT,
+    tamanho VARCHAR(1),
     PRIMARY KEY (fk_pedido, fk_pizza),
     FOREIGN KEY (fk_pedido) REFERENCES pedidos(id),
     FOREIGN KEY (fk_pizza) REFERENCES pizzas(id)
