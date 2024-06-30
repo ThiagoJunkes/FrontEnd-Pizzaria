@@ -1,3 +1,5 @@
+export const url = 'http://localhost:3000';
+
 function validarCadastro() {
     var senha = document.getElementById('senha').value;
     var repetirSenha = document.getElementById('repetir_senha').value;
@@ -19,7 +21,7 @@ async function validarLogin(event) {
   const senha = document.getElementById('senha').value;
 
   try {
-    const response = await fetch('http://localhost:3000/users/login', {
+    const response = await fetch(url+'/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
