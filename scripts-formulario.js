@@ -1,163 +1,237 @@
+const url = 'http://localhost:3000';
+let pizzas = [];
+
+const multiplicadores = {
+  broto: 1,
+  pequena: 1.4,
+  media: 1.7,
+  grande: 2
+};
+
 // Array com os sabores disponíveis
-const sabores = [
-    { nome: "Margherita", value: "margherita" },
-    { nome: "Pepperoni", value: "pepperoni" },
-    { nome: "Calabresa", value: "calabresa" },
-    { nome: "4 Queijos", value: "4queijos" },
-    { nome: "Frango e Catupiry", value: "frango-catupiry" },
-    { nome: "Portuguesa", value: "portuguesa" },
-    { nome: "Vegetariana", value: "vegetariana" }
-  ];
-  
-  // Função para validar o formulário
-  function validarFormulario() {
-    const form = document.getElementById("formPedido");
-    const nome = form.nome.value.trim();
-    const telefone = form.telefone.value.trim();
-    const cpf = form.cpf.value.trim();
-    const endereco = form.endereco.value.trim();
-    const tamanho = form.tamanho.value;
-  
-    // Verificando se os campos obrigatórios estão preenchidos
-    if (!nome || !telefone || !endereco || !tamanho || !cpf) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return false;
-    }
-
-    if(!validarCPF(cpf)){
-      alert("Por favor, digite um CPF válido!");
-      return false;
-    }
-
-    if(!validarTelefone(telefone)){
-      alert("Por favor, digite um telefone válido!");
-      return false;
-    }
-  
-    // Verificando a quantidade de sabores escolhidos (máximo 2)
-    const checkboxes = document.querySelectorAll('input[name="sabor"]:checked');
-    if (checkboxes.length === 0) {
-      alert("Por favor, escolha pelo menos um sabor.");
-      return false;
-    } else if (checkboxes.length > 2) {
-      alert("Você pode escolher no máximo dois sabores.");
-      return false;
-    }
-  
-    return true;
+async function carregarPizzas() {
+  try {
+    const response = await fetch(`${url}/pizzas`);
+    pizzas = await response.json();
+  } catch (error) {
+    console.error('Erro ao carregar pizzas:', error);
   }
+}
+
+// Função para validar o formulário
+function validarFormulario() {
+  const form = document.getElementById("formPedido");
+  const endereco = form.endereco.value.trim();
+
+  // Verificando se os campos obrigatórios estão preenchidos
+  if (!endereco) {
+    alert("Por favor, preencha o endereço.");
+    return false;
+  }
+
+  return true;
+}
+
+// Função para adicionar uma nova pizza ao pedido
+function adicionarPizza() {
+  const pizzaContainer = document.getElementById("pizzaContainer");
+
+  const pizzaDiv = document.createElement("div");
+  pizzaDiv.classList.add("pizza-item", "mb-3");
+
+  const selectPizza = document.createElement("select");
+  selectPizza.name = "pizza";
+  selectPizza.classList.add("form-select", "mb-2");
+
+  // Opção inicial "Selecionar Sabor" que não é parte do array de pizzas
+  const optionDefaultPizza = document.createElement("option");
+  optionDefaultPizza.disabled = true;
+  optionDefaultPizza.selected = true;
+  optionDefaultPizza.textContent = "Selecionar Sabor";
+  selectPizza.appendChild(optionDefaultPizza);
+
+  pizzas.forEach(pizza => {
+    const option = document.createElement("option");
+    option.value = pizza.id;
+    option.textContent = `${pizza.nome}`;
+    selectPizza.appendChild(option);
+  });
+
+  const selectTamanho = document.createElement("select");
+  selectTamanho.name = "tamanho";
+  selectTamanho.classList.add("form-select", "mb-2");
+
+  // Opção inicial "Selecionar Tamanho" que não é parte do array de tamanhos
+  const optionDefaultTamanho = document.createElement("option");
+  optionDefaultTamanho.disabled = true;
+  optionDefaultTamanho.selected = true;
+  optionDefaultTamanho.textContent = "Selecionar Tamanho";
+  selectTamanho.appendChild(optionDefaultTamanho);
+
+  ["broto", "pequena", "media", "grande"].forEach(tamanho => {
+    const option = document.createElement("option");
+    option.value = tamanho;
+    option.textContent = tamanho.charAt(0).toUpperCase() + tamanho.slice(1);
+    selectTamanho.appendChild(option);
+  });
+
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.classList.add("btn", "btn-danger", "mb-2");
+  removeButton.textContent = "Remover";
+  removeButton.onclick = () => pizzaDiv.remove();
+
+  const precoPizza = document.createElement("span"); // Alterado para <span> para exibir o preço
+  precoPizza.textContent = ''; // Inicialmente vazio até selecionar sabor e tamanho
+
+  // Adicionando evento de mudança nos selects para calcular o preço
+  selectPizza.addEventListener('change', () => {
+    calcularPreco();
+    atualizarValorTotal();
+  });
+
+  selectTamanho.addEventListener('change', () => {
+    calcularPreco();
+    atualizarValorTotal();
+  });
+
+  function atualizarValorTotal() {
+    const valorAntigo = document.getElementById('ValorTotal').textContent;
+    const pizzasSelecionadas = document.querySelectorAll('.pizza-item');
+    let total = 0;
   
-  function stringPedidoEnviado() {
-    const form = document.getElementById("formPedido");
-    const nome = form.nome.value.trim();
-    const tamanho = form.tamanho.value;
-  
-    const saboresSelecionados = [];
-    const checkboxes = document.querySelectorAll('input[name="sabor"]:checked');
-    checkboxes.forEach(checkbox => {
-      saboresSelecionados.push(checkbox.labels[0].textContent);
+    pizzasSelecionadas.forEach(pizzaItem => {
+      const precoTexto = pizzaItem.querySelector('span').textContent;
+      const precoNumero = parseFloat(precoTexto.replace('R$ ', '').replace(',', '.'));
+      if (!isNaN(precoNumero)) {
+        total += precoNumero;
+      }
     });
   
-    const listaSabores = saboresSelecionados.map(sabor => `${sabor}`).join(",\n");
-  
-    const dataHoraAtual = new Date();
-    const dataHoraEntrega = new Date(dataHoraAtual.getTime() + 30 * 60000); // 30 minutos em milissegundos
-    const horaEntrega = dataHoraEntrega.toLocaleTimeString("pt-BR", { hour: "numeric", minute: "numeric" });
-    const dataEntrega = dataHoraEntrega.toLocaleDateString("pt-BR") + " às " + horaEntrega;
-  
-    const mensagemPedido = `${nome}, Pedido Realizado!\nSua pizza ${tamanho} sabores:\n${listaSabores}\n\nChegará em 30 minutos\n${dataEntrega}`;
-  
-    alert(mensagemPedido);
-  }
-  
-  
-  
-  
-  // Função para carregar os sabores dinamicamente
-  function carregarSabores() {
-    const saboresDiv = document.getElementById("sabores");
-    saboresDiv.innerHTML = "";
-
-    const row = document.createElement("div");
-    row.classList.add("row");
-
-    sabores.forEach((sabor, index) => {
-      const checkboxDiv = document.createElement("div");
-      checkboxDiv.classList.add("col-6", "col-md-4", "mb-3"); // Cada sabor ocupará 6 colunas em telas menores e 4 em telas médias
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.id = sabor.value;
-      checkbox.name = "sabor";
-      checkbox.value = sabor.value;
-
-      const label = document.createElement("label");
-      label.htmlFor = sabor.value;
-      label.textContent = sabor.nome;
-
-      checkboxDiv.appendChild(checkbox);
-      checkboxDiv.appendChild(label);
-      row.appendChild(checkboxDiv);
-    });
-
-    saboresDiv.appendChild(row);
-  }
-
-  // Chamando a função para carregar os sabores quando a página carregar
-  document.addEventListener("DOMContentLoaded", carregarSabores);
-  
-  function validarCPF(cpf) {
-    // Remove caracteres não numéricos
-    cpf = cpf.replace(/\D/g, '');
-  
-    // Verifica se o CPF tem 11 dígitos
-    if (cpf.length !== 11) {
-      return false;
-    }
-  
-    // Verifica se todos os dígitos são iguais, o que não é permitido em um CPF válido
-    if (/^(\d)\1{10}$/.test(cpf)) {
-      return false;
-    }
-  
-    // Calcula o primeiro dígito verificador
-    let soma = 0;
-    for (let i = 0; i < 9; i++) {
-      soma += parseInt(cpf.charAt(i)) * (10 - i);
-    }
-    let resto = 11 - (soma % 11);
-    let digitoVerificador1 = resto === 10 || resto === 11 ? 0 : resto;
-  
-    // Verifica se o primeiro dígito verificador está correto
-    if (digitoVerificador1 !== parseInt(cpf.charAt(9))) {
-      return false;
-    }
-  
-    // Calcula o segundo dígito verificador
-    soma = 0;
-    for (let i = 0; i < 10; i++) {
-      soma += parseInt(cpf.charAt(i)) * (11 - i);
-    }
-    resto = 11 - (soma % 11);
-    let digitoVerificador2 = resto === 10 || resto === 11 ? 0 : resto;
-  
-    // Verifica se o segundo dígito verificador está correto
-    if (digitoVerificador2 !== parseInt(cpf.charAt(10))) {
-      return false;
-    }
-  
-    // CPF válido
-    return true;
-  }
-
-  function validarTelefone(telefone) {
-    telefone = telefone.replace(/\D/g, '');
-  
-    let regex = /^(?:\d{10}|\d{11})$/;
-  
-    if (regex.test(telefone)) {
-      return true; // Telefone válido
+    if (!isNaN(total)) {
+      document.getElementById('ValorTotal').textContent = total.toFixed(2).replace('.', ',');
     } else {
-      return false; // Telefone inválido
+      document.getElementById('ValorTotal').textContent = valorAntigo;
     }
   }
+
+  function calcularPreco() {
+    const pizzaId = selectPizza.value;
+    const tamanho = selectTamanho.value;
+
+    const pizza = pizzas.find(p => p.id == pizzaId);
+    if (pizza) {
+      const valorPizza = pizza.valor * multiplicadores[tamanho];
+      if (!isNaN(valorPizza)) {
+        precoPizza.textContent = `R$ ${valorPizza.toFixed(2)}`;
+      } else {
+        precoPizza.textContent = '';
+      }
+      
+    }
+  }
+
+  const espacoVazio = document.createElement("textfield");
+  espacoVazio.textContent = "   ";
+
+  pizzaDiv.appendChild(selectPizza);
+  pizzaDiv.appendChild(selectTamanho);
+  pizzaDiv.appendChild(removeButton);
+  pizzaDiv.appendChild(espacoVazio);
+  pizzaDiv.appendChild(precoPizza);
+
+  pizzaContainer.appendChild(pizzaDiv);
+}
+
+
+
+// Função para validar o usuário logado
+function validarUsuarioLogado() {
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    alert('Usuário não autenticado. Por favor, faça login.');
+    window.location.href = './login.html';
+    return;
+  }
+}
+
+// Função para enviar o formulário
+async function enviarFormulario(event) {
+  event.preventDefault();
+
+  if (!validarFormulario()) {
+    return;
+  }
+
+  const form = document.getElementById("formPedido");
+  const pizzasSelecionadas = [];
+
+  document.querySelectorAll('.pizza-item').forEach(pizzaItem => {
+    const pizzaId = pizzaItem.querySelector('select[name="pizza"]').value;
+    const tamanho = pizzaItem.querySelector('select[name="tamanho"]').value;
+
+    // Mapear o tamanho para a letra correspondente usando switch case
+    let tamanhoAbreviado;
+    switch (tamanho) {
+      case "broto":
+        tamanhoAbreviado = "B";
+        break;
+      case "pequena":
+        tamanhoAbreviado = "P";
+        break;
+      case "media":
+        tamanhoAbreviado = "M";
+        break;
+      case "grande":
+        tamanhoAbreviado = "G";
+        break;
+      default:
+        tamanhoAbreviado = tamanho;
+        break;
+    }
+
+    const pizza = pizzas.find(p => p.id == pizzaId);
+    const valorPizza = pizza.valor * multiplicadores[tamanho];
+
+    pizzasSelecionadas.push({
+      id: pizza.id,
+      nome: pizza.nome,
+      tamanho: tamanhoAbreviado,
+      valor: valorPizza
+    });
+  });
+
+  const totalValor = Math.floor(pizzasSelecionadas.reduce((acc, pizza) => acc + pizza.valor, 0), -1);
+
+  const pedido = {
+    endereco: form.endereco.value.trim(),
+    pizzas: pizzasSelecionadas,
+    valorTotal: totalValor
+  };
+
+  try {
+    const response = await fetch(`${url}/pedidos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      },
+      body: JSON.stringify(pedido)
+    });
+
+    if (response.ok) {
+      alert('Pedido realizado com sucesso!');
+    } else {
+      alert('Erro ao realizar pedido. Tente novamente.');
+    }
+  } catch (error) {
+    console.error('Erro ao enviar pedido:', error);
+    alert('Erro ao enviar pedido. Tente novamente.');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  validarUsuarioLogado();
+  await carregarPizzas();
+  document.getElementById('formPedido').addEventListener('submit', enviarFormulario);
+});

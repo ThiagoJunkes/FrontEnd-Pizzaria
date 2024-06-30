@@ -39,7 +39,14 @@
   <main>
     <div class="container">
         <h1>Pedidos</h1>
-        <button id="addOrderBtn">Adicionar Pedido</button>
+        <button id="addOrderBtn">Fazer um Pedido</button>
+
+        <script>
+          document.getElementById('addOrderBtn').addEventListener('click', function () {
+          window.location.href = './formulario.html';
+          });
+        </script>
+
         <table class="table">
             <thead>
                 <tr>

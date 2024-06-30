@@ -1,4 +1,3 @@
-/* Estilos para o formulário */
 body {
     font-family: Arial, sans-serif;
     background-color: #f1e5d4;
@@ -7,101 +6,107 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Para cobrir a altura da viewport */
-  }
-  
-  .content-container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #2c3e50;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  .special {
-    font-style: italic;
-  }
-  
-  .separator-line {
-    border: none;
-    height: 1px;
-    background-color: #ccc;
-    margin: 20px 0;
-  }
-  
-  .radio-group {
+}
+
+.content-container {
+    flex: 1; /* Para ocupar o espaço restante vertical */
     display: flex;
     justify-content: center;
-  }
-  
-  .radio-group input[type="radio"] {
-    display: none;
-  }
-  
-  .radio-group label {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #c54234;
-    color: #fff;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
-  .radio-group input[type="radio"]:checked + label {
-    background-color: #e67e22;
-  }
-  
-  /* Estilos para o select */
-  select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    align-items: center;
+    padding: 20px;
+}
+
+#pedido {
+    max-width: 600px;
     width: 100%;
-    font-size: 16px;
-    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="radio"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.radio-group {
+    margin-bottom: 10px;
+}
+
+.radio-group .form-check {
+    margin-right: 20px;
+}
+
+.separator-line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #c58f49;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button#adicionarPizzaBtn{
+    background-color: #e9c13f;
+}
+
+button#adicionarPizzaBtn:hover {
+    background-color: #c9a42d;
+}
+
+input[type="submit"]:hover {
+    background-color: #996e35;
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-danger {
+    background-color: #f44336;
+}
+
+.alert-warning {
+    background-color: #ff9800;
+}
+
+#valorTotalLabel {
+    font-weight: bold;
   }
   
-  .underline {
-    text-decoration: underline;
-  }
-  
-  /* Estilos para os sabores em colunas */
-.row .col-md-4 {
-  margin-bottom: 10px;
-}
-
-/* Estilos para os sabores em colunas */
-#sabores .col-6 {
-  max-width: 200px; /* Tamanho máximo para evitar que os sabores fiquem muito largos */
-}
-
-/* Estilos para os checkbox de sabores */
-.radio-group input[type="checkbox"] {
-  display: none;
-}
-
-.radio-group label {
-  display: block;
-  padding: 10px;
-  background-color: #c54234;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.radio-group input[type="checkbox"]:checked + label {
-  background-color: #e67e22;
-}
-
-.register-link {
-  color: #333 !important;
+#ValorTotal {
+font-weight: bold;
 }
