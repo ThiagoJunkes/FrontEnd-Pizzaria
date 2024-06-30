@@ -1,3 +1,5 @@
+const url = 'http://localhost:3000';
+
 function fetchOrders() {
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -6,7 +8,7 @@ function fetchOrders() {
       return;
     }
   
-    fetch(`http://localhost:3000/orders?token=${token}`, {
+    fetch(url + `/orders?token=${token}`, {
       method: 'GET'
     })
     .then(response => {

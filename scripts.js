@@ -1,4 +1,4 @@
-export const url = 'http://localhost:3000';
+const url = 'http://localhost:3000';
 
 function validarCadastro() {
     var senha = document.getElementById('senha').value;
@@ -48,5 +48,4 @@ async function validarLogin(event) {
     alert('Erro ao fazer login. Tente novamente mais tarde.');
   }
 }
-
 

@@ -1,4 +1,4 @@
-import { url } from './scripts.js';
+const url = 'http://localhost:3000';
 
 function fetchOrders() {
     const token = sessionStorage.getItem('token');
@@ -52,7 +52,7 @@ function fetchOrders() {
             viewButton.textContent = 'Visualizar';
             viewButton.classList.add('btn', 'btn-primary');
             viewButton.addEventListener('click', () => {
-                window.location.href = `${url}/order/${order.pedido_id}`;
+                window.location.href = `./cliente-pedido.html?idPedido=${order.pedido_id}`;
             });
             tdViewButton.appendChild(viewButton);
             tr.appendChild(tdViewButton);
