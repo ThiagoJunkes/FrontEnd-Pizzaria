@@ -17,7 +17,7 @@ CREATE TABLE pizzas (
     nome VARCHAR(100),
     descricao TEXT,
     valor DECIMAL(10, 2),
-    imagem BLOB -- Armazenamento de arquivo de imagem
+    imagem LONGBLOB -- Armazenamento de arquivo de imagem
 );
 
 -- Tabela de pedidos
@@ -77,3 +77,6 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+SET GLOBAL max_allowed_packet = 104857600; -- Por exemplo, 100MB
