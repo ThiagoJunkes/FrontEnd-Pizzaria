@@ -20,6 +20,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
    ```bash
     npm install
+   npm install multer
   
 ## Configuração do Banco de Dados
 1. Crie o banco de dados pizzaria_db executando o script SQL fornecido. Certifique-se de ter o MariaDB ou MySQL instalado e configurado corretamente.
