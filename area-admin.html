@@ -53,7 +53,13 @@
   <main>
     <div class="container">
         <h1>Pizzas</h1>
-        <button id="addPizzaBtn">Adicionar Pizza</button>
+        <button id="addPizzaBtn" class="btn btn-primary">Adicionar Pizza</button>
+
+        <script>
+        document.getElementById('addPizzaBtn').addEventListener('click', function () {
+        window.location.href = './adicionar-pizza.html';
+        });
+        </script>
         <table class="table">
             <thead>
                 <tr>
