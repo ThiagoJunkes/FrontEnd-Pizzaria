@@ -29,6 +29,20 @@ function validarFormulario() {
     return false;
   }
 
+  // Verificando se todas as pizzas têm sabor e tamanho selecionados
+  const pizzasSelecionadas = document.querySelectorAll('.pizza-item');
+  for (let i = 0; i < pizzasSelecionadas.length; i++) {
+    const pizzaItem = pizzasSelecionadas[i];
+    const selectPizza = pizzaItem.querySelector('select[name="pizza"]');
+    const selectTamanho = pizzaItem.querySelector('select[name="tamanho"]');
+
+    // Verificando se o sabor e o tamanho estão selecionados
+    if (selectPizza.selectedIndex === 0 || selectTamanho.selectedIndex === 0) {
+      alert(`Por favor, selecione o sabor e o tamanho para a pizza ${i + 1}.`);
+      return false;
+    }
+  }
+
   return true;
 }
 
