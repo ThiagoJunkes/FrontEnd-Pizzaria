@@ -16,6 +16,7 @@ CREATE TABLE pizzas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     descricao TEXT,
+    valor DECIMAL(10, 2),
     imagem BLOB -- Armazenamento de arquivo de imagem
 );
 

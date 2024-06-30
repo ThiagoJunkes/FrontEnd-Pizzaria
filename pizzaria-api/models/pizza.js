@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       descricao: {
         type: DataTypes.TEXT,
       },
+      valor: {
+        type: DataTypes.DECIMAL(10, 2),
+      },
       imagem: {
         type: DataTypes.BLOB,
       },

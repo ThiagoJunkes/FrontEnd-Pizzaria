@@ -12,10 +12,10 @@ VALUES
 (3, 60.50, 'Avenida Y, 202'),
 (3, 75.00, 'Avenida Z, 303');
 
-INSERT INTO pizzas (nome, descricao) VALUES ('Margherita', 'Molho de tomate, mussarela, manjericão');
-INSERT INTO pizzas (nome, descricao) VALUES ('Pepperoni', 'Molho de tomate, mussarela, pepperoni');
-INSERT INTO pizzas (nome, descricao) VALUES ('Quatro Queijos', 'Molho de tomate, mussarela, gorgonzola, parmesão, provolone');
-INSERT INTO pizzas (nome, descricao) VALUES ('Calabresa', 'Molho de tomate, mussarela, calabresa, cebola');
+INSERT INTO pizzas (nome, descricao, valor) VALUES ('Margherita', 'Molho de tomate, mussarela, manjericão', 20.00);
+INSERT INTO pizzas (nome, descricao, valor) VALUES ('Pepperoni', 'Molho de tomate, mussarela, pepperoni', 25.00);
+INSERT INTO pizzas (nome, descricao, valor) VALUES ('Quatro Queijos', 'Molho de tomate, mussarela, gorgonzola, parmesão, provolone', 27.99);
+INSERT INTO pizzas (nome, descricao, valor) VALUES ('Calabresa', 'Molho de tomate, mussarela, calabresa, cebola', 22.50);
 
 -- Inserindo pizzas nos pedidos do usuário com id 2
 INSERT INTO pedidos_pizzas (fk_pedido, fk_pizza, qtd, tamanho)

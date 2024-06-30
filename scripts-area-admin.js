@@ -1,6 +1,6 @@
 const url = 'http://localhost:3000';
 
-function fetchOrders() {
+function fetchPizzas() {
     const token = sessionStorage.getItem('token');
     if (!token) {
       alert('Usuário não autenticado. Por favor, faça login.');
@@ -8,47 +8,71 @@ function fetchOrders() {
       return;
     }
   
-    fetch(url + `/orders?token=${token}`, {
+    fetch(url + `/pizzas`, {
       method: 'GET'
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Erro ao carregar pedidos.');
+        throw new Error('Erro ao carregar pizzas.');
       }
       return response.json();
     })
-    .then(orders => {
-      const ordersTableBody = document.getElementById('ordersTableBody');
-      ordersTableBody.innerHTML = '';
+    .then(pizzas => {
+      const pizzaTableBody = document.getElementById('pizzaTableBody');
+      pizzaTableBody.innerHTML = '';
   
-      orders.forEach(order => {
+      pizzas.forEach(pizza => {
         const tr = document.createElement('tr');
   
-        const tdDate = document.createElement('td');
-        tdDate.textContent = new Date(order.data_pedido).toLocaleDateString();
-        tr.appendChild(tdDate);
-  
+        const tdName = document.createElement('td');
+        tdName.textContent = pizza.nome;
+        tr.appendChild(tdName);
+
         const tdValue = document.createElement('td');
-        tdValue.textContent = `R$ ${order.valor_pago.toFixed(2)}`;
+        tdValue.textContent = `R$ ${parseFloat(pizza.valor).toFixed(2)}`;
         tr.appendChild(tdValue);
   
         const tdDescription = document.createElement('td');
-        tdDescription.textContent = order.descricao;
+        const maxLength = 100; // Ajuste o comprimento máximo conforme necessário
+        if (pizza.descricao.length > maxLength) {
+            tdDescription.textContent = pizza.descricao.substring(0, maxLength) + '...';
+        } else {
+            tdDescription.textContent = pizza.descricao || 'Sem descrição';
+        }
         tr.appendChild(tdDescription);
   
-        ordersTableBody.appendChild(tr);
+        const tdActions = document.createElement('td');
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar';
+        editButton.classList.add('btn', 'btn-warning', 'me-2');
+        editButton.addEventListener('click', () => {
+            // Adicionar lógica para editar pizza
+        });
+        tdActions.appendChild(editButton);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Excluir';
+        deleteButton.classList.add('btn', 'btn-danger');
+        deleteButton.addEventListener('click', () => {
+            // Adicionar lógica para excluir pizza
+        });
+        tdActions.appendChild(deleteButton);
+
+        tr.appendChild(tdActions);
+  
+        pizzaTableBody.appendChild(tr);
       });
     })
     .catch(error => {
-      console.error('Erro ao carregar pedidos:', error);
-      alert('Erro ao carregar pedidos. Tente novamente mais tarde.');
+      console.error('Erro ao carregar pizzas:', error);
+      alert('Erro ao carregar pizzas. Tente novamente mais tarde.');
     });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    fetchOrders();
+    fetchPizzas();
   
-    document.getElementById('addOrderBtn').addEventListener('click', function () {
-        // Adicionar lógica para adicionar pedido
+    document.getElementById('addPizzaBtn').addEventListener('click', function () {
+        // Adicionar lógica para adicionar pizza
     });
   });

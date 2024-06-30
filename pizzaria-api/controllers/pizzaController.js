@@ -1,25 +1,7 @@
 const { sequelize } = require('../models');
 
 exports.getAllPizzas = async (req, res) => {
-  const token = req.query.token;
   try {
-      const [userIdResult] = await sequelize.query(
-          'SELECT id, tipo FROM usuarios WHERE token = :token;',
-          {
-              replacements: { token },
-              type: sequelize.QueryTypes.SELECT
-          }
-      );
-
-      if (!userIdResult || userIdResult.length === 0) {
-          return res.status(401).json({ message: 'Usuário não autenticado' });
-      }
-      
-      const userTipo = userIdResult.tipo;
-      if (userTipo == 0) {
-        return res.status(401).json({ message: 'Usuário não autorizado' });
-    }
-
       // Consulta para obter as pizzas se o ususario for 1
       const pizzasQuery = `
           SELECT * FROM pizzas
@@ -39,6 +21,7 @@ exports.getAllPizzas = async (req, res) => {
       id: pizza.id,
       nome: pizza.nome,
       descricao: pizza.descricao,
+      valor: pizza.valor,
       imagem: pizza.imagem,
     }));
 
