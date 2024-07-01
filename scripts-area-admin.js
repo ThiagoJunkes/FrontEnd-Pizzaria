@@ -7,7 +7,7 @@ function fetchPizzas() {
       window.location.href = './login.html';
       return;
     }
-  
+   
     fetch(url + `/pizzas`, {
       method: 'GET'
     })
@@ -54,7 +54,10 @@ function fetchPizzas() {
         deleteButton.textContent = 'Excluir';
         deleteButton.classList.add('btn', 'btn-danger');
         deleteButton.addEventListener('click', () => {
-            // Adicionar lógica para excluir pizza
+          const confirmed = confirm(`Tem certeza que deseja excluir a pizza ${pizza.nome}?`);
+          if (confirmed) {
+              deletePizza(pizza.id); // Chama a função para excluir a pizza pelo ID
+          }
         });
         tdActions.appendChild(deleteButton);
 
@@ -69,10 +72,34 @@ function fetchPizzas() {
     });
   }
 
+  function deletePizza(pizzaId) {
+    const token = sessionStorage.getItem('token');
+    fetch(`${url}/pizzas/${pizzaId}?token=${token}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.status === 404) {
+            return response.json().then(data => {
+                throw new Error(`Erro ao excluir pizza: ${data.message}`);
+            });
+        }
+        if (response.status === 409) {
+            return response.json().then(data => {
+                throw new Error(`Erro ao excluir pizza: ${data.message}`);
+            });
+        }
+        if (!response.ok) {
+            throw new Error('Erro ao excluir pizza.');
+        }
+        // Atualiza a lista de pizzas após a exclusão
+        fetchPizzas();
+    })
+    .catch(error => {
+        console.error('Erro ao excluir pizza:', error.message);
+        alert(error.message || 'Erro ao excluir pizza. Tente novamente mais tarde.');
+    });
+}
+
   document.addEventListener('DOMContentLoaded', function () {
     fetchPizzas();
-  
-    document.getElementById('addPizzaBtn').addEventListener('click', function () {
-        // Adicionar lógica para adicionar pizza
-    });
   });
