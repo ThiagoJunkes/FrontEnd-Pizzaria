@@ -41,7 +41,7 @@ exports.pedidos = async (req, res) => {
 
       // Verifique se há pedidos encontrados
       if (!ordersResult || ordersResult.length === 0) {
-          return res.status(404).json({ message: 'Nenhum pedido encontrado para este usuário' });
+        return res.status(200).json([]); // Retorna uma lista vazia
       }
       
       // Processar os resultados para agrupar por pedido_id e criar a descrição

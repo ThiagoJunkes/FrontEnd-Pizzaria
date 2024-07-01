@@ -67,3 +67,12 @@ button#voltarBtn:hover,
 button#addPizzaBtn:hover {
     background-color: #996e35; 
 }
+
+.truncated-text {
+  display: inline-block;
+  max-width: 200px; /* Ajuste conforme necessário */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}

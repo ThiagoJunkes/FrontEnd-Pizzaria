@@ -39,7 +39,7 @@ function fetchOrders() {
             tr.appendChild(tdValue);
   
             const tdDescription = document.createElement('td');
-            const maxLength = 50; // Ajuste o comprimento máximo conforme necessário
+            const maxLength = 60; // Ajuste o comprimento máximo conforme necessário
             if (order.descricao_pizzas.length > maxLength) {
                 tdDescription.textContent = order.descricao_pizzas.substring(0, maxLength) + '...';
             } else {
@@ -68,8 +68,4 @@ function fetchOrders() {
 
 document.addEventListener('DOMContentLoaded', function () {
     fetchOrders();
-  
-    document.getElementById('addOrderBtn').addEventListener('click', function () {
-        // Adicionar lógica para adicionar pedido
-    });
 });
