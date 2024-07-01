@@ -1,3 +1,8 @@
+-- Inserindo 3 usuarios
+INSERT INTO usuarios (username, senha, tipo) VALUES ("admin", "admin", 1);
+INSERT INTO usuarios (username, senha, tipo) VALUES ("thiago", "12345", 0);
+INSERT INTO usuarios (username, senha, tipo) VALUES ("tarso", "54321", 0);
+
 -- Inserindo 3 pedidos para o usuário com id 2
 INSERT INTO pedidos (fk_usuario, valor_pago, endereco)
 VALUES 
@@ -36,3 +41,4 @@ VALUES
 (5, 4, 1, 'G'), -- Pedido 5: 1 pizza Calabresa tamanho Grande
 (6, 1, 2, 'M'), -- Pedido 6: 2 pizzas Margherita tamanho Médio
 (6, 4, 2, 'G'); -- Pedido 6: 2 pizzas Calabresa tamanho Grande
+
