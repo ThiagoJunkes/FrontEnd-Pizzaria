@@ -52,6 +52,12 @@ exports.addPizza = async (req, res) => {
         return res.status(401).json({ message: 'Usuário não autenticado' });
     }
 
+    console.log("Tipo: " + userIdResult.tipo);
+
+    if(userIdResult.tipo == 0){
+      return res.status(401).json({ message: 'Usuário não autorizado' });
+    }
+
     // Ler o arquivo de imagem como buffer
     const imageData = fs.readFileSync(imagem.path);
 

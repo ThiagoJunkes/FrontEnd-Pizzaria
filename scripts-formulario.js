@@ -1,5 +1,6 @@
 const url = 'http://localhost:3000';
 let pizzas = [];
+const token = sessionStorage.getItem('token');
 
 const multiplicadores = {
   broto: 1,
@@ -161,7 +162,6 @@ function adicionarPizza() {
 
 // Função para validar o usuário logado
 function validarUsuarioLogado() {
-  const token = sessionStorage.getItem('token');
   if (!token) {
     alert('Usuário não autenticado. Por favor, faça login.');
     window.location.href = './login.html';
@@ -209,7 +209,6 @@ async function enviarFormulario(event) {
 
     pizzasSelecionadas.push({
       id: pizza.id,
-      nome: pizza.nome,
       tamanho: tamanhoAbreviado,
       valor: valorPizza
     });
@@ -223,25 +222,27 @@ async function enviarFormulario(event) {
     valorTotal: totalValor
   };
 
-  try {
-    const response = await fetch(`${url}/pedidos`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      },
-      body: JSON.stringify(pedido)
-    });
+  console.log(JSON.stringify(pedido));
 
-    if (response.ok) {
-      alert('Pedido realizado com sucesso!');
-    } else {
-      alert('Erro ao realizar pedido. Tente novamente.');
+  fetch(`${url}/orders?token=${token}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(pedido)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      throw new Error(data.error);
     }
-  } catch (error) {
+    alert('Pizza adicionada com sucesso!');
+    window.location.href = './area-cliente.html';
+  })
+  .catch(error => {
     console.error('Erro ao enviar pedido:', error);
     alert('Erro ao enviar pedido. Tente novamente.');
-  }
+    }); 
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

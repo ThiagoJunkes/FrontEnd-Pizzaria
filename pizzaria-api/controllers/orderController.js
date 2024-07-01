@@ -140,3 +140,54 @@ exports.viewOrder = async (req, res) => {
     res.status(500).json({ error: 'Erro ao carregar o pedido.' });
   }
 };
+
+exports.addOrder = async (req, res) => {
+  const token = req.query.token;
+  const { endereco, pizzas, valorTotal } = req.body;
+  
+  console.log("Novo Pedido");
+  try {
+    // Verificar o token e obter o ID do usuário
+    const [userIdResult] = await sequelize.query(
+      'SELECT id FROM usuarios WHERE token = :token and tipo = 0;',
+      {
+        replacements: { token },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (!userIdResult) {
+      return res.status(401).json({ message: 'Usuário não autenticado' });
+    }
+
+    const userId = userIdResult.id;
+    // Inserir o pedido na tabela 'pedidos'
+    const [orderResult] = await sequelize.query(
+      'INSERT INTO pedidos (fk_usuario, endereco, valor_pago, data_pedido) VALUES (:userId, :endereco, :valorTotal, NOW())',
+      {
+        replacements: { userId, endereco, valorTotal },
+        type: sequelize.QueryTypes.INSERT
+      }
+    );
+
+    const orderId = orderResult; // Obtém o ID do pedido inserido
+
+    // Inserir as pizzas na tabela 'pedidos_pizzas'
+    for (const pizza of pizzas) {
+      const { id, tamanho } = pizza;
+      await sequelize.query(
+        'INSERT INTO pedidos_pizzas (fk_pedido, fk_pizza, tamanho, qtd) VALUES (:orderId, :pizzaId, :tamanho, 1)',
+        {
+          replacements: { orderId, pizzaId: id, tamanho },
+          type: sequelize.QueryTypes.INSERT
+        }
+      );
+    }
+
+    res.status(201).json({ message: 'Pedido adicionado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao adicionar pedido: ', error);
+    res.status(500).json({ error: 'Erro ao adicionar o pedido' });
+  }
+};
+

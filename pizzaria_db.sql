@@ -32,11 +32,11 @@ CREATE TABLE pedidos (
 
 -- Tabela de relação pedidos_pizzas (para registrar quais pizzas estão em cada pedido)
 CREATE TABLE pedidos_pizzas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     fk_pedido INT,
     fk_pizza INT,
     qtd INT,
     tamanho VARCHAR(1),
-    PRIMARY KEY (fk_pedido, fk_pizza),
     FOREIGN KEY (fk_pedido) REFERENCES pedidos(id),
     FOREIGN KEY (fk_pizza) REFERENCES pizzas(id)
 );

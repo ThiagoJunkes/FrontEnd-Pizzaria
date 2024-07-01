@@ -21,11 +21,14 @@ document.getElementById('addPizzaForm').addEventListener('submit', function (eve
     method: 'POST',
     body: formData
   })
-  .then(response => response.json())
-  .then(data => {
-    if (data.error) {
-      throw new Error(data.error);
+  .then(response => {
+    if (response.status === 201) {
+      return response.json(); // Converter para JSON se status for 201
+    } else {
+      throw new Error(`Erro: ${response.statusText}`); // Lançar erro se status não for 201
     }
+  })
+  .then(data => {
     alert('Pizza adicionada com sucesso!');
     window.location.href = './area-admin.html';
   })
