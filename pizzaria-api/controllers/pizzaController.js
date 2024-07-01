@@ -106,6 +106,8 @@ exports.editPizza = async (req, res) => {
     let imageData;
     if (imagem) {
       imageData = fs.readFileSync(imagem.path);
+    }else{
+      return res.status(401).json({ message: 'Deve ser enviada uma imagem' });
     }
 
     // Construir objeto com dados para atualização
@@ -128,6 +130,10 @@ exports.editPizza = async (req, res) => {
     // Remover o arquivo do sistema de arquivos após salvar no banco de dados, se existir
     if (imagem) {
       fs.unlinkSync(imagem.path);
+    }
+
+    if (updatedPizza === 0) {
+      return res.status(404).json({ message: 'Pizza não foi editada' });
     }
 
     res.status(200).json({ message: 'Pizza atualizada com sucesso' });
