@@ -39,122 +39,8 @@
   <div class="container">
     <h2 class="titulo-pizzas text-center mt-5 mb-4">Nossas Pizzas</h2>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
-      </div>
-      <div class="carousel-inner">
-        <!-- Margherita -->
-        <div class="carousel-item active">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-margherita.avif" alt="Margherita" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Margherita</h3>
-                <p class="highlight">Feita com molho de tomate, queijo mozarela, manjericão e azeite.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pepperoni -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-pepperoni.webp" alt="Pepperoni" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Pepperoni</h3>
-                <p class="highlight">Deliciosa com pepperoni fatiado e queijo derretido.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Calabresa -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-calabresa.jpeg" alt="Calabresa" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Calabresa</h3>
-                <p class="highlight">Com calabresa, cebola, queijo e um toque de orégano.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4 Queijos -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-4queijos.jpg" alt="4 Queijos" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>4 Queijos</h3>
-                <p class="highlight">Com uma mistura irresistível de 4 tipos de queijos.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Frango com Catupiry -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-frango-catupiry.jpg" alt="Frango com Catupiry" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Frango com Catupiry</h3>
-                <p class="highlight">Saborosa com frango desfiado e catupiry cremoso.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Portuguesa -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-portuguesa.jpg" alt="Portuguesa" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Portuguesa</h3>
-                <p class="highlight">Com presunto, ovos, cebola, pimentão e azeitonas.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Vegetariana -->
-        <div class="carousel-item">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <img src="./Imagens/pizza-vegetariana.jpeg" alt="Vegetariana" class="pizza-img">
-            </div>
-            <div class="col-md-6">
-              <div class="pizza-info">
-                <h3>Vegetariana</h3>
-                <p class="highlight">Repleta de legumes frescos e deliciosos.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div class="carousel-indicators" id="carousel-indicators"></div>
+      <div class="carousel-inner" id="carousel-inner"></div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -192,5 +78,6 @@
   </footer>  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts-carousel.js"></script>
 </body>
 </html>
