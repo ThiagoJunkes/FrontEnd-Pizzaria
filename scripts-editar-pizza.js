@@ -50,12 +50,46 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     // Adicionar evento de envio do formulário
-    editPizzaForm.addEventListener('submit', function(event) {
+    editPizzaForm.addEventListener('submit', async function(event) {
       event.preventDefault(); // Prevenir o envio padrão do formulário
   
-      // Implementar lógica para enviar os dados atualizados da pizza para a API
-      // Aqui você pode usar fetch() para enviar os dados para a rota de edição da pizza
-      // Lembre-se de enviar o token de autenticação e o ID da pizza junto com os dados atualizados.
-    });
+      const nomePizza = document.getElementById('nomePizza').value;
+    const descricaoPizza = document.getElementById('descricaoPizza').value;
+    const valorPizza = document.getElementById('valorPizza').value;
+    const imagemPizza = document.getElementById('imagemPizza').files[0];
+
+    if (!descricaoPizza) {
+      alert('Por favor, preencha o campo de descrição.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('nome', nomePizza);
+    formData.append('descricao', descricaoPizza);
+    formData.append('valor', valorPizza);
+    if (imagemPizza) {
+      formData.append('imagem', imagemPizza);
+    }
+
+    try {
+      const token = sessionStorage.getItem('token');
+      const response = await fetch(`${url}/pizzas/edit/${idPizza}?token=${token}`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao atualizar dados da pizza.');
+      }
+
+      const result = await response.json();
+      console.log('Pizza atualizada com sucesso:', result);
+      // Redirecionar para a área admin ou mostrar uma mensagem de sucesso
+      window.location.href = './area-admin.html';
+    } catch (error) {
+      console.error('Erro ao atualizar dados da pizza:', error);
+      // Mostrar uma mensagem de erro ao usuário
+    }
+  });
   });
   
