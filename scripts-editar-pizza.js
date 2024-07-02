@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Preencher a visualização da imagem atual da pizza, se houver imagem
       if (imagem) {
         const visualizacaoImagem = document.getElementById('visualizacaoImagem');
-        visualizacaoImagem.src = 'pizzaria-api/'+imagem;
+        visualizacaoImagem.src = 'pizzaria-api'+imagem;
       }
     }
   

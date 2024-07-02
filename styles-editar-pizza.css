@@ -1,0 +1,20 @@
+
+.pizza-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.pizza-details {
+    flex: 1;
+    max-width: 48%;
+}
+.pizza-image {
+    flex: 1;
+    max-width: 48%;
+    text-align: center;
+}
+.pizza-image img {
+    max-width: 100%;
+    height: auto;
+}

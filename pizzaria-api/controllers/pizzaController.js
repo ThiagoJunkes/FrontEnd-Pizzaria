@@ -196,9 +196,11 @@ exports.getPizzaById = async (req, res) => {
       id: idPizza,
       nome: pizza.nome,
       descricao: pizza.descricao,
-      valor: pizza.valor,
-      imagem: `/temp/pizza-${idPizza}.jpeg`
+      valor: pizza.valor
     };
+    if(pizza.imagem){
+      pizzaData.imagem = `/temp/pizza-${idPizza}.jpeg`;
+    }
 
     // Enviar resposta JSON com os dados da pizza
     res.status(200).json(pizzaData);

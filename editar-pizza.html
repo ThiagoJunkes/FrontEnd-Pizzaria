@@ -7,6 +7,7 @@
   <link rel="icon" href="./Imagens/icone.png" type="image/png">
   <link rel="stylesheet" href="styles-arealogada.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-editar-pizza.css">
 </head>
 <body>
   <header class="header bg-dark text-light py-3">
@@ -47,28 +48,32 @@
       });
       </script>
     <form id="editPizzaForm" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="nomePizza" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nomePizza" name="nome" required>
-      </div>
-      <div class="mb-3">
-        <label for="descricaoPizza" class="form-label">Descrição</label>
-        <textarea class="form-control" id="descricaoPizza" name="descricao" rows="3"></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="valorPizza" class="form-label">Valor</label>
-        <input type="text" class="form-control" id="valorPizza" name="valor" required>
-      </div>
-      <div class="mb-3">
-        <label for="imagemPizza" class="form-label">Imagem</label>
-        <input type="file" class="form-control" id="imagemPizza" name="imagem">
-      </div>
-      <div class="mb-3">
-        <label for="visualizacaoImagem" class="form-label">Imagem Atual</label><br>
-        <img src="" id="visualizacaoImagem" class="img-fluid" alt="Imagem Atual">
+      <div class="pizza-container">
+        <div class="pizza-details">
+          <div class="mb-3">
+            <label for="nomePizza" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomePizza" name="nome" required>
+          </div>
+          <div class="mb-3">
+            <label for="descricaoPizza" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricaoPizza" name="descricao" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="valorPizza" class="form-label">Valor</label>
+            <input type="text" class="form-control" id="valorPizza" name="valor" required>
+          </div>
+          <div class="mb-3">
+            <label for="imagemPizza" class="form-label">Imagem</label>
+            <input type="file" class="form-control" id="imagemPizza" name="imagem">
+          </div>
+        </div>
+        <div class="pizza-image">
+          <label for="visualizacaoImagem" class="form-label">Imagem Atual</label><br>
+          <img src="Imagens/Item_sem_imagem.png" id="visualizacaoImagem" class="img-fluid" alt="Imagem Atual">
+        </div>
       </div>
       <input type="hidden" id="pizzaId" name="pizzaId">
-      <button id="addPizzaBtn" type="submit" class="btn btn-primary">Salvar Alterações</button>
+      <button id="addPizzaBtn" type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
     </form>
   </main>
 
