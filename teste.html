@@ -24,7 +24,7 @@
             <h2>${pizza.nome}</h2>
             <p>${pizza.descricao}</p>
             <p>Preço: R$${pizza.valor}</p>
-            ${pizza.imagem ? `<img src="data:image/jpeg;base64,${pizza.imagem}" alt="${pizza.nome}">` : '<p>Imagem não disponível</p>'}
+            ${pizza.imagem ? `<img src="data:image/jpeg;base64,${pizza.imagem}" alt="${pizza.nome}">` : `<img src="Imagens/Item_sem_imagem.png" alt="${pizza.nome}">`}
           `;
           pizzaContainer.appendChild(pizzaDiv);
         });

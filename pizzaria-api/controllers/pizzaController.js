@@ -152,18 +152,6 @@ exports.getPizzaById = async (req, res) => {
   try {
     const token = req.query.token;
     const { idPizza } = req.params;
-    const tempDir = path.join(__dirname, '../temp');
-    const imagePath = path.join(tempDir, `pizza-${idPizza}.jpeg`);
-
-    console.log("Bem no começo: " + idPizza);
-    // Verificar se o diretório temp existe, senão cria
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir);
-    }
-    //if (fs.existsSync(imagePath)) {
-    //  fs.unlinkSync(imagePath);
-    //}
-    //wait();
 
     const [userIdResult] = await sequelize.query(
       'SELECT id, tipo FROM usuarios WHERE token = :token AND tipo = 1;',
