@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 router.get('/', pizzaController.getAllPizzas);
+router.get('/:idPizza', pizzaController.getPizzaById);
 router.post('/', upload.single('imagem'), pizzaController.addPizza);
 router.post('/edit/:idPizza', upload.single('imagem'), pizzaController.editPizza);
 router.delete('/:idPizza', pizzaController.deletePizza);

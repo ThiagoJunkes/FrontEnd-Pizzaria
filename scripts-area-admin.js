@@ -46,7 +46,7 @@ function fetchPizzas() {
         editButton.textContent = 'Editar';
         editButton.classList.add('btn', 'btn-warning', 'me-2');
         editButton.addEventListener('click', () => {
-            // Adicionar lógica para editar pizza
+            editPizza(pizza.id);
         });
         tdActions.appendChild(editButton);
 
@@ -72,6 +72,11 @@ function fetchPizzas() {
     });
   }
 
+  function editPizza(pizzaId){
+    sessionStorage.setItem('idpizza', pizzaId);
+
+    window.location.href = './editar-pizza.html';
+  }
   function deletePizza(pizzaId) {
     const token = sessionStorage.getItem('token');
     fetch(`${url}/pizzas/${pizzaId}?token=${token}`, {

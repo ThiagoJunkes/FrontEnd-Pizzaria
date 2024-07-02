@@ -1,5 +1,6 @@
 const { sequelize, Pizza } = require('../models');
 const fs = require('fs');
+const path = require('path');
 
 exports.getAllPizzas = async (req, res) => {
   try {
@@ -106,8 +107,6 @@ exports.editPizza = async (req, res) => {
     let imageData;
     if (imagem) {
       imageData = fs.readFileSync(imagem.path);
-    }else{
-      return res.status(401).json({ message: 'Deve ser enviada uma imagem' });
     }
 
     // Construir objeto com dados para atualização
@@ -143,9 +142,79 @@ exports.editPizza = async (req, res) => {
   }
 };
 
+exports.getPizzaById = async (req, res) => {
+  try {
+    const token = req.query.token;
+    const { idPizza } = req.params;
+    const tempDir = path.join(__dirname, '../temp');
+    const imagePath = path.join(tempDir, `pizza-${idPizza}.jpeg`);
+
+    console.log("Bem no começo: " + idPizza);
+    // Verificar se o diretório temp existe, senão cria
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir);
+    }
+    //if (fs.existsSync(imagePath)) {
+    //  fs.unlinkSync(imagePath);
+    //}
+    //wait();
+
+    const [userIdResult] = await sequelize.query(
+      'SELECT id, tipo FROM usuarios WHERE token = :token AND tipo = 1;',
+      {
+        replacements: { token },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    if (!userIdResult || userIdResult.length === 0) {
+      return res.status(401).json({ message: 'Usuário não autenticado' });
+    }
+
+    if (userIdResult.tipo === 0) {
+      return res.status(401).json({ message: 'Usuário não autorizado' });
+    }
+    
+    console.log("Antes");
+
+    const pizza = await Pizza.findOne({
+      where: { id: idPizza }
+    });
+
+    console.log("Depois");
+    if (!pizza) {
+      return res.status(404).json({ message: 'Pizza não encontrada' });
+    }
+
+    if (!fs.existsSync(imagePath) && pizza.imagem) {
+      // Converter a imagem do blob para Base64
+      const base64Image = pizza.imagem.toString('base64');
+
+      // Escrever a imagem no diretório temp
+      fs.writeFileSync(imagePath, Buffer.from(base64Image, 'base64'));
+    }
+
+    // Preparar os dados para resposta
+    const pizzaData = {
+      id: idPizza,
+      nome: pizza.nome,
+      descricao: pizza.descricao,
+      valor: pizza.valor,
+      imagem: `/temp/pizza-${idPizza}.jpeg`
+    };
+
+    // Enviar resposta JSON com os dados da pizza
+    res.status(200).json(pizzaData);
+  } catch (error) {
+    console.error('Erro ao buscar pizza por ID:', error);
+    res.status(500).json({ error: 'Erro ao buscar pizza por ID. Tente novamente mais tarde.' });
+  }
+};
+
+
 
 exports.deletePizza = async (req, res) => {
-  try {
+  try { 
     const token = req.query.token;
     const { idPizza } = req.params;
 
@@ -193,3 +262,8 @@ exports.deletePizza = async (req, res) => {
     res.status(500).json({ error: 'Erro ao excluir pizza. Tente novamente mais tarde.' });
   }
 };
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 200)); // Espera por 100 milissegundos (0,1 segundo)
+  console.log('Esperou 0,2 segundo');
+}

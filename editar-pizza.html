@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Pizza - Pizzaria della Nonna</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="icon" href="./Imagens/icone.png" type="image/png">
+  <link rel="stylesheet" href="styles-arealogada.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header bg-dark text-light py-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="w-25 col-md-4">
+          <img src="./Imagens/pizza-header.png" alt="Pizza Header" class="img-fluid" style="max-height: 80px;">
+        </div>
+        <div class="w-50 col-md-4 text-center">
+          <h1 class="mb-0">Pizzaria della Nonna</h1>
+          <div class="col align-items-center mx-1">
+            <a><em>Pasta fatta in casa!</em></a>
+            <span class="mx-1">|</span>
+            <a><em>Massa feita em casa!</em></a>
+          </div>
+        </div>
+        <div class="w-25 col-md-4 text-light">
+          <h3><a href="./login.html" class="text-light col">Login</a></h3>
+        </div>
+      </div>
+      <div class="mt-2 text-center">
+        <nav class="nav row align-items-center">
+          <a href="./pagina-pizzaria.html" class="text-light col"><u>Página Inicial</u></a>
+          <a href="./sabores.html" class="text-light col">Conheça nossos sabores</a>
+          <a href="./formulario.html" class="text-light col">Peça sua pizza</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mt-5">
+    <h2 class="text-center mb-4">Editar Pizza</h2>
+    <button id="voltarBtn" class="btn btn-primary">Voltar</button>
+
+      <script>
+      document.getElementById('voltarBtn').addEventListener('click', function () {
+      window.location.href = './area-admin.html';
+      });
+      </script>
+    <form id="editPizzaForm" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="nomePizza" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nomePizza" name="nome" required>
+      </div>
+      <div class="mb-3">
+        <label for="descricaoPizza" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricaoPizza" name="descricao" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="valorPizza" class="form-label">Valor</label>
+        <input type="text" class="form-control" id="valorPizza" name="valor" required>
+      </div>
+      <div class="mb-3">
+        <label for="imagemPizza" class="form-label">Imagem</label>
+        <input type="file" class="form-control" id="imagemPizza" name="imagem">
+      </div>
+      <div class="mb-3">
+        <label for="visualizacaoImagem" class="form-label">Imagem Atual</label><br>
+        <img src="" id="visualizacaoImagem" class="img-fluid" alt="Imagem Atual">
+      </div>
+      <input type="hidden" id="pizzaId" name="pizzaId">
+      <button id="addPizzaBtn" type="submit" class="btn btn-primary">Salvar Alterações</button>
+    </form>
+  </main>
+
+  <footer id="footer" class="footer bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="mb-0 underline">De Segunda à Sábado 17:00 - 23:00</p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-0 underline">Localização: Rua das Pizzas, 123 - Centro</p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-0 underline">Entre em contato: (11) 98765-4321</p>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <ul class="social-links mb-0">
+            <li class="d-inline me-2"><a href="https://www.facebook.com" class="text-light">Facebook</a></li>
+            <li class="d-inline me-2"><a href="https://www.instagram.com/" class="text-light">Instagram</a></li>
+            <li class="d-inline"><a href="https://twitter.com/" class="text-light">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts-editar-pizza.js"></script>
+</body>
+</html>
