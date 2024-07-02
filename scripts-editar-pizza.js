@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const result = await response.json();
       console.log('Pizza atualizada com sucesso:', result);
-      // Redirecionar para a área admin ou mostrar uma mensagem de sucesso
+      //Excluir arquivo 
       window.location.href = './area-admin.html';
     } catch (error) {
       console.error('Erro ao atualizar dados da pizza:', error);
