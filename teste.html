@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu de Pizzas</title>
+</head>
+<body>
+  <h1>Menu de Pizzas</h1>
+  <div id="pizza-container"></div>
+
+  <script>
+    async function fetchPizzas() {
+      try {
+        const response = await fetch('http://localhost:3000/pizzas');
+        const pizzas = await response.json();
+
+        const pizzaContainer = document.getElementById('pizza-container');
+        pizzaContainer.innerHTML = '';
+
+        pizzas.forEach(pizza => {
+          const pizzaDiv = document.createElement('div');
+          pizzaDiv.innerHTML = `
+            <h2>${pizza.nome}</h2>
+            <p>${pizza.descricao}</p>
+            <p>Preço: R$${pizza.valor}</p>
+            ${pizza.imagem ? `<img src="data:image/jpeg;base64,${pizza.imagem}" alt="${pizza.nome}">` : '<p>Imagem não disponível</p>'}
+          `;
+          pizzaContainer.appendChild(pizzaDiv);
+        });
+      } catch (error) {
+        console.error('Erro ao buscar pizzas:', error);
+      }
+    }
+
+    fetchPizzas();
+  </script>
+</body>
+</html>
