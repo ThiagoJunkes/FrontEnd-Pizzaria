@@ -174,14 +174,11 @@ exports.getPizzaById = async (req, res) => {
     if (userIdResult.tipo === 0) {
       return res.status(401).json({ message: 'Usuário não autorizado' });
     }
-    
-    console.log("Antes");
 
     const pizza = await Pizza.findOne({
       where: { id: idPizza }
     });
 
-    console.log("Depois");
     if (!pizza) {
       return res.status(404).json({ message: 'Pizza não encontrada' });
     }
