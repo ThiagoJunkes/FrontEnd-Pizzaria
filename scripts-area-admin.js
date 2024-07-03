@@ -1,5 +1,3 @@
-const url = 'http://localhost:3000';
-
 function fetchPizzas() {
     const token = sessionStorage.getItem('token');
     if (!token) {

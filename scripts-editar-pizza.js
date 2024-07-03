@@ -1,5 +1,3 @@
-const url = 'http://localhost:3000';
-
 document.addEventListener('DOMContentLoaded', function() {
   const idPizza = sessionStorage.getItem('idpizza');
 

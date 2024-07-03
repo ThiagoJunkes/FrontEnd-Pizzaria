@@ -1,4 +1,3 @@
-const url = 'http://localhost:3000';
 let pizzas = [];
 const token = sessionStorage.getItem('token');
 

@@ -34,6 +34,7 @@ async function validarLogin(event) {
     if (response.ok) {
       const { token, tipo } = data;
       sessionStorage.setItem('token', token);
+      sessionStorage.setItem('tipo', tipo);
 
       if (tipo === 1) {
         window.location.href = './area-admin.html';
@@ -49,3 +50,34 @@ async function validarLogin(event) {
   }
 }
 
+// Função para atualizar o header com base no tipo de usuário
+function updateHeaderBasedOnUserType(tipo) {
+  const linkAreaLogada = document.getElementById('linkPecaPizza');
+
+  if (tipo == 1) {
+    // Usuário admin
+    linkAreaLogada.textContent = 'Área do Admin';
+    linkAreaLogada.href = './area-admin.html';
+  } else if (tipo == 0){
+    // Usuário cliente
+    linkAreaLogada.textContent = 'Área do Cliente';
+    linkAreaLogada.href = './area-cliente.html';
+  } else{
+    linkAreaLogada.href = './formulario.html';
+  }
+
+  // Verifica se estamos na página area-cliente.html para sublinhar o link
+  if (window.location.pathname.includes('area-admin.html')) {
+    console.log("Pagina sublinhada");
+    linkAreaLogada.classList.add('underline');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const tipo = sessionStorage.getItem('tipo');
+    updateHeaderBasedOnUserType(tipo);
+  } catch (e) {
+    console.log(e);
+  }
+});
